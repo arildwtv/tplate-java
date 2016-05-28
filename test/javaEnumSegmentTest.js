@@ -64,13 +64,13 @@ describe('javaEnumSegment', () => {
     const output = t(javaEnumSegment({
       name: 'Weekdays',
       annotations: [
-        { name: 'WeekdayAnnotation' }
+        { type: 'WeekdayAnnotation' }
       ],
       constants: [
         {
           name: 'MONDAY',
           annotations: [
-            { name: 'FirstDay' }
+            { type: 'FirstDay' }
           ]
         },
         { name: 'TUESDAY' },
@@ -79,8 +79,8 @@ describe('javaEnumSegment', () => {
         {
           name: 'FRIDAY',
           annotations: [
-            { name: 'LastDay' },
-            { name: 'HappyDay', value: javaStringLiteralSegment('Yay!') }
+            { type: 'LastDay' },
+            { type: 'HappyDay', value: javaStringLiteralSegment('Yay!') }
           ]
         }
       ]

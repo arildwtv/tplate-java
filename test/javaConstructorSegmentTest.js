@@ -35,14 +35,14 @@ describe('javaConstructorSegment', () => {
     const output = t(javaConstructorSegment({
       annotations: [
         {
-          name: 'MyAnnotation',
+          type: 'MyAnnotation',
           args: [
             { name: 'val1', value: 123 },
             { name: 'val2', value: javaStringLiteralSegment('456') }
           ]
         },
         {
-          name: 'MyOtherAnnotation',
+          type: 'MyOtherAnnotation',
           value: false
         }
       ]
@@ -70,8 +70,8 @@ describe('javaConstructorSegment', () => {
       parameters: [
         {
           annotations: [
-            { name: 'JsonProperty', value: javaStringLiteralSegment("myString") },
-            { name: 'AnotherAnnotation', value: 1234 }
+            { type: 'JsonProperty', value: javaStringLiteralSegment("myString") },
+            { type: 'AnotherAnnotation', value: 1234 }
           ],
           type: 'String',
           name: 'myString'

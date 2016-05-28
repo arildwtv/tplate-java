@@ -144,8 +144,8 @@ describe('javaClassSegment', () => {
     const { t } = createTemplate();
     const output = t(javaClassSegment({
       annotations: [
-        { name: 'JsonIgnoreProperties' },
-        { name: 'SuppressWarnings', value: javaStringLiteralSegment('unchecked') }
+        { type: 'JsonIgnoreProperties' },
+        { type: 'SuppressWarnings', value: javaStringLiteralSegment('unchecked') }
       ]
     }));
     const expectedClass = readFixture('class/annotatedClass');

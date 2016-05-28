@@ -55,8 +55,8 @@ describe('javaMethodSegment', () => {
         },
         {
           annotations: [
-            { name: 'JsonProperty', value: javaStringLiteralSegment('myInt') },
-            { name: 'Default', value: 1234 }
+            { type: 'JsonProperty', value: javaStringLiteralSegment('myInt') },
+            { type: 'Default', value: 1234 }
           ],
           name: 'myInt',
           type: 'int',
@@ -91,8 +91,8 @@ describe('javaMethodSegment', () => {
     const { t } = createTemplate();
     const output = t(javaMethodSegment({
       annotations: [
-        { name: 'Override' },
-        { name: 'SuppressWarnings', value: javaStringLiteralSegment('unchecked') }
+        { type: 'Override' },
+        { type: 'SuppressWarnings', value: javaStringLiteralSegment('unchecked') }
       ],
       name: 'setPerson',
       parameters: [

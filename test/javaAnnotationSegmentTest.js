@@ -14,7 +14,7 @@ describe('javaAnnotationSegment', () => {
   it('renders annotation name if name argument is provided', () => {
     const { t } = createTemplate();
     const output = t(javaAnnotationSegment({
-      name: 'Override'
+      type: 'Override'
     }));
     const expectedAnnotation = readFixture('annotation/annotationWithName');
     assert.equal(output, expectedAnnotation);
@@ -23,7 +23,7 @@ describe('javaAnnotationSegment', () => {
   it('renders annotation with value if value argument is provided', () => {
     const { t } = createTemplate();
     const output = t(javaAnnotationSegment({
-      name: 'SuppressWarnings',
+      type: 'SuppressWarnings',
       value: javaStringLiteralSegment('unchecked')
     }));
     const expectedAnnotation = readFixture('annotation/annotationWithNameAndValue');
@@ -33,7 +33,7 @@ describe('javaAnnotationSegment', () => {
   it('renders annotation with arguments if args argument is provided', () => {
     const { t } = createTemplate();
     const output = t(javaAnnotationSegment({
-      name: 'SuppressWarnings',
+      type: 'SuppressWarnings',
       args: [
         { name: 'firstVar', value: javaStringLiteralSegment('foo') },
         { name: 'secondVar', value: javaStringLiteralSegment('bar') },
@@ -47,7 +47,7 @@ describe('javaAnnotationSegment', () => {
   it('renders annotation with array literal arguments if args argument is provided', () => {
     const { t } = createTemplate();
     const output = t(javaAnnotationSegment({
-      name: 'SuppressWarnings',
+      type: 'SuppressWarnings',
       args: [
         { name: 'firstVar', value: javaStringLiteralSegment('foo') },
         { name: 'secondVar', value: javaArrayLiteralSegment([
@@ -64,12 +64,12 @@ describe('javaAnnotationSegment', () => {
   it('renders annotation with annotation array arguments if such an args argument is provided', () => {
     const { t } = createTemplate();
     const output = t(javaAnnotationSegment({
-      name: 'MySetOfAnnotations',
+      type: 'MySetOfAnnotations',
       args: [
         { name: 'setName', value: javaStringLiteralSegment('foo') },
         { name: 'annotations', value: javaArrayLiteralSegment([
-          javaAnnotationSegment({ name: 'MyBarAnno', value: '1337' }),
-          javaAnnotationSegment({ name: 'MyBazAnno', value: '1338' })
+          javaAnnotationSegment({ type: 'MyBarAnno', value: '1337' }),
+          javaAnnotationSegment({ type: 'MyBazAnno', value: '1338' })
         ])}
       ]
     }));

@@ -2,16 +2,16 @@ function getValue(tplate, value) {
   return typeof value === 'function' ? value(tplate) : value;
 }
 
-function javaAnnotationWithoutParameters({ t }, name) {
-  return t(`@${name}`);
+function javaAnnotationWithoutParameters({ t }, type) {
+  return t(`@${type}`);
 }
 
-function javaAnnotationWithParameters(tplate, name, args) {
+function javaAnnotationWithParameters(tplate, type, args) {
   const { t, indent } = tplate;
   return (args.length === 1 && args[0].name === 'value'
-      ? t(`@${name}(${getValue(tplate, args[0].value)})`)
+      ? t(`@${type}(${getValue(tplate, args[0].value)})`)
       : t(
-        `@${name}(`,
+        `@${type}(`,
         indent(
           args.map(arg => `${arg.name} = ${getValue(tplate, arg.value)}`).join(',\n')
         ),
@@ -19,7 +19,7 @@ function javaAnnotationWithParameters(tplate, name, args) {
 }
 
 export function javaAnnotationSegment({
-  name = 'Annotation',
+  type = 'Annotation',
   args = [],
   value
 } = {}) {
@@ -29,6 +29,6 @@ export function javaAnnotationSegment({
 
   return tplate =>
     (args.length === 0
-      ? javaAnnotationWithoutParameters(tplate, name)
-      : javaAnnotationWithParameters(tplate, name, args));
+      ? javaAnnotationWithoutParameters(tplate, type)
+      : javaAnnotationWithParameters(tplate, type, args));
 }
