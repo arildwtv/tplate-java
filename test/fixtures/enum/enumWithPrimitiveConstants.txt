@@ -1,0 +1,19 @@
+public enum Weekdays {
+
+  MONDAY(1),
+  TUESDAY(2),
+  WEDNESDAY(3),
+  THURSDAY(4),
+  FRIDAY(5);
+
+  private final int dayNumber;
+
+  Weekdays(
+    final int dayNumber) {
+    this.dayNumber = dayNumber;
+  }
+
+  public int getDayNumber() {
+    return dayNumber;
+  }
+}

@@ -1,0 +1,21 @@
+public enum StarWarsCast {
+
+  LUKE(
+    new Character("Luke"),
+    Gender.MALE
+  ),
+  LEIA(
+    new Character("Leia"),
+    Gender.FEMALE
+  );
+
+  private final Character character;
+  private final Gender gender;
+
+  StarWarsCast(
+    final Character character,
+    final Gender gender) {
+    this.character = character;
+    this.gender = gender;
+  }
+}

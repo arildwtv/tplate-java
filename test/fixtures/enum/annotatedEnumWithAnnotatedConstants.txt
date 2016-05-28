@@ -1,0 +1,12 @@
+@WeekdayAnnotation
+public enum Weekdays {
+
+  @FirstDay
+  MONDAY,
+  TUESDAY,
+  WEDNESDAY,
+  THURSDAY,
+  @LastDay
+  @HappyDay("Yay!")
+  FRIDAY;
+}
