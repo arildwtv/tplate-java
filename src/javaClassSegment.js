@@ -3,14 +3,7 @@ import { javaConstructorSegment } from './javaConstructorSegment';
 import { javaMethodSegment } from './javaMethodSegment';
 import { javaFieldSegment } from './javaFieldSegment';
 import { javaGenericTypeSegment } from './javaGenericTypeSegment';
-
-function interweave(array, interweaveItem = '') {
-  const interwovenArray = array.reduce((prevArray, item) =>
-      prevArray.concat(item, interweaveItem),
-    []);
-  interwovenArray.pop();
-  return interwovenArray;
-}
+import { interweave } from './util';
 
 function classNameSegment(name, genericTypes) {
   return `${name}${javaGenericTypeSegment(genericTypes)}`;

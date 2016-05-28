@@ -1,5 +1,5 @@
 import { javaGenericTypeSegment } from './javaGenericTypeSegment';
-import getValueOrRenderSegment from './getValueOrRenderSegment';
+import { getValueOrRenderSegment } from './util';
 
 export function javaFieldSegment({
   accessModifier = 'private',
