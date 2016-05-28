@@ -30,6 +30,16 @@ describe('javaClassSegment', () => {
     assert.equal(output, expectedClass);
   });
 
+  it('renders package accessed class without explicit access modifier if the argument is provided', () => {
+    const { t } = createTemplate();
+    const output = t(javaClassSegment({
+      name: 'Car',
+      accessModifier: 'package'
+    }));
+    const expectedClass = readFixture('class/classWithPackageAccessModifier');
+    assert.equal(output, expectedClass);
+  });
+
   it('renders class with scope if the argument is provided', () => {
     const { t } = createTemplate();
     const output = t(javaClassSegment({
@@ -151,9 +161,10 @@ describe('javaClassSegment', () => {
           assign: javaStringLiteralSegment('A string value')
         },
         {
+          accessModifier: 'package',
           name: 'nonFinalIntegerFieldWithoutAssignment',
           type: 'Integer',
-          final: false
+          final: false,
         },
         {
           accessModifier: 'public',

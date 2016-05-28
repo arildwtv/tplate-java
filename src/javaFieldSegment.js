@@ -1,5 +1,6 @@
 import { javaGenericTypeSegment } from './javaGenericTypeSegment';
 import { getValueOrRenderSegment } from './util';
+import { javaAccessModifierSegment } from './javaAccessModifierSegment';
 
 export function javaFieldSegment({
   accessModifier = 'private',
@@ -10,13 +11,13 @@ export function javaFieldSegment({
   name,
   assign
   } = {}) {
-  const scopeString = scope === 'class' ? ' static' : '';
-  const finalString = final ? ' final' : '';
+  const scopeString = scope === 'class' ? 'static ' : '';
+  const finalString = final ? 'final ' : '';
   return tplate => {
     const { t } = tplate;
     const assignString = assign ? ` = ${getValueOrRenderSegment(tplate, assign)}` : '';
     return t(
-      `${accessModifier}${scopeString}${finalString} ` +
+      `${javaAccessModifierSegment(accessModifier)}${scopeString}${finalString}` +
       `${type}${javaGenericTypeSegment(genericTypes)} ${name}${assignString};`
     );
   };

@@ -10,6 +10,14 @@ describe('javaMethodSegment', () => {
     const expectedMethod = readFixture('method/defaultMethod');
     assert.equal(output, expectedMethod);
   });
+  it('renders package accessed method without explicity access modifier if these arguments are provided', () => {
+    const { t } = createTemplate();
+    const output = t(javaMethodSegment({
+      accessModifier: 'package'
+    }));
+    const expectedMethod = readFixture('method/defaultMethodWithPackageAccessModifier');
+    assert.equal(output, expectedMethod);
+  });
 
   it('renders method name, return type and access modifier if these arguments are provided', () => {
     const { t } = createTemplate();

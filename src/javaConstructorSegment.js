@@ -1,5 +1,6 @@
 import { javaAnnotationSegment } from './javaAnnotationSegment';
 import { javaParameterSegment } from './javaParameterSegment';
+import { javaAccessModifierSegment } from './javaAccessModifierSegment';
 
 function javaConstructorSegmentWithoutParameters(tplate, {
   accessModifier,
@@ -10,7 +11,7 @@ function javaConstructorSegmentWithoutParameters(tplate, {
   const { t, indent } = tplate;
   return t(
     annotations.map(javaAnnotationSegment),
-    `${accessModifier} ${name}() {`,
+    `${javaAccessModifierSegment(accessModifier)}${name}() {`,
     body ? indent(body(tplate)) : undefined,
     '}'
   );
@@ -26,7 +27,7 @@ function javaConstructorSegmentWithParameters(tplate, {
   const { t, indent, map } = tplate;
   return t(
     annotations.map(javaAnnotationSegment),
-    `${accessModifier} ${name}(`,
+    `${javaAccessModifierSegment(accessModifier)}${name}(`,
     indent(map(parameters, javaParameterSegment)),
     body ? indent(body(tplate)) : undefined,
     '}'

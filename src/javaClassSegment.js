@@ -3,6 +3,7 @@ import { javaConstructorSegment } from './javaConstructorSegment';
 import { javaMethodSegment } from './javaMethodSegment';
 import { javaFieldSegment } from './javaFieldSegment';
 import { javaGenericTypeSegment } from './javaGenericTypeSegment';
+import { javaAccessModifierSegment } from './javaAccessModifierSegment';
 import { interweave } from './util';
 
 function classNameSegment(name, genericTypes) {
@@ -24,8 +25,8 @@ function interfaceSegment({ name, genericTypes = [] }) {
 }
 
 function classHeaderSegment(accessModifier, name, genericTypes, scope, extendsClass) {
-  return `${accessModifier} ${scopeSegment(scope)}class ${classNameSegment(name, genericTypes)}` +
-    `${extendsSegment(extendsClass)}`;
+  return `${javaAccessModifierSegment(accessModifier)}${scopeSegment(scope)}` +
+    `class ${classNameSegment(name, genericTypes)}${extendsSegment(extendsClass)}`;
 }
 
 export function javaClassSegment({

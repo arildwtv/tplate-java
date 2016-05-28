@@ -21,6 +21,15 @@ describe('javaConstructorSegment', () => {
     assert.equal(output, expectedConstructor);
   });
 
+  it('renders package accessed constructor without explicit access modifier if these arguments are provided', () => {
+    const { t } = createTemplate();
+    const output = t(javaConstructorSegment({
+      accessModifier: 'package'
+    }));
+    const expectedConstructor = readFixture('constructor/packageConstructor');
+    assert.equal(output, expectedConstructor);
+  });
+
   it('renders constructor with annotations if these arguments are provided', () => {
     const { t } = createTemplate();
     const output = t(javaConstructorSegment({
