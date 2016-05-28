@@ -23,6 +23,11 @@ function interfaceSegment({ name, genericTypes = [] }) {
   return `${name}${javaGenericTypeSegment(genericTypes)}`;
 }
 
+function classHeaderSegment(accessModifier, name, genericTypes, scope, extendsClass) {
+  return `${accessModifier} ${scopeSegment(scope)}class ${classNameSegment(name, genericTypes)}` +
+    `${extendsSegment(extendsClass)}`;
+}
+
 export function javaClassSegment({
   name = 'MyClass',
   extendsClass = undefined,
@@ -42,12 +47,10 @@ export function javaClassSegment({
     // Annotation lines
     annotations.length ? annotations.map(javaAnnotationSegment) : undefined,
 
-    // Class Declaration
+    // Class Header Declaration
     interfaces.length
-      ? `${accessModifier} ${scopeSegment(scope)}class ${classNameSegment(name, genericTypes)}` +
-        `${extendsSegment(extendsClass)}`
-      : `${accessModifier} ${scopeSegment(scope)}class ${classNameSegment(name, genericTypes)}` +
-        `${extendsSegment(extendsClass)} {`,
+      ? `${classHeaderSegment(accessModifier, name, genericTypes, scope, extendsClass)}`
+      : `${classHeaderSegment(accessModifier, name, genericTypes, scope, extendsClass)} {`,
 
     interfaces.length
       ? indent(`implements ${interfaces.map(interfaceSegment).join(', ')} {`)
