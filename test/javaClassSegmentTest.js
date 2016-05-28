@@ -65,7 +65,7 @@ describe('javaClassSegment', () => {
     const output = t(javaClassSegment({
       name: 'Car',
       interfaces: [
-        { name: 'CarInterface' }
+        { type: 'CarInterface' }
       ]
     }));
     const expectedClass = readFixture('class/classImplementingInterface');
@@ -77,9 +77,9 @@ describe('javaClassSegment', () => {
     const output = t(javaClassSegment({
       name: 'Car',
       interfaces: [
-        { name: 'CarInterface' },
-        { name: 'AnotherInterface' },
-        { name: 'AndAnotherInterface' }
+        { type: 'CarInterface' },
+        { type: 'AnotherInterface' },
+        { type: 'AndAnotherInterface' }
       ]
     }));
     const expectedClass = readFixture('class/classImplementingInterfaces');
@@ -119,8 +119,8 @@ describe('javaClassSegment', () => {
         name: 'Vehicle'
       },
       interfaces: [
-        { name: 'CarInterface' },
-        { name: 'YetAnotherInterface' }
+        { type: 'CarInterface' },
+        { type: 'YetAnotherInterface' }
       ]
     }));
     const expectedClass = readFixture('class/classExtendingClassAndImplementingInterfaces');
@@ -132,8 +132,8 @@ describe('javaClassSegment', () => {
     const output = t(javaClassSegment({
       name: 'Car',
       interfaces: [
-        { name: 'CarInterface' },
-        { name: 'VehicleInterface', genericTypes: [{ type: 'Car' }] }
+        { type: 'CarInterface' },
+        { type: 'VehicleInterface', genericTypes: [{ type: 'Car' }] }
       ]
     }));
     const expectedClass = readFixture('class/classImplementingInterfacesWithGenericTypes');

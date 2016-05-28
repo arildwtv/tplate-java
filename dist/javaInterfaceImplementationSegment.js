@@ -8,9 +8,9 @@ exports.javaInterfaceImplementationSegment = javaInterfaceImplementationSegment;
 var _javaGenericTypeSegment = require('./javaGenericTypeSegment');
 
 function javaInterfaceImplementationSegment(_ref) {
-  var name = _ref.name;
+  var type = _ref.type;
   var _ref$genericTypes = _ref.genericTypes;
   var genericTypes = _ref$genericTypes === undefined ? [] : _ref$genericTypes;
 
-  return '' + name + (0, _javaGenericTypeSegment.javaGenericTypeSegment)(genericTypes);
+  return '' + type + (0, _javaGenericTypeSegment.javaGenericTypeSegment)(genericTypes);
 }

@@ -35,8 +35,8 @@ describe('javaEnumSegment', () => {
     const { t } = createTemplate();
     const output = t(javaEnumSegment({
       interfaces: [
-        { name: 'SomeInterface' },
-        { name: 'AndAnotherInterface' }
+        { type: 'SomeInterface' },
+        { type: 'AndAnotherInterface' }
       ]
     }));
     const expectedEnum = readFixture('enum/enumImplementingInterface');

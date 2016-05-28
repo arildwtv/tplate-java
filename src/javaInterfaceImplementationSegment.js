@@ -1,5 +1,5 @@
 import { javaGenericTypeSegment } from './javaGenericTypeSegment';
 
-export function javaInterfaceImplementationSegment({ name, genericTypes = [] }) {
-  return `${name}${javaGenericTypeSegment(genericTypes)}`;
+export function javaInterfaceImplementationSegment({ type, genericTypes = [] }) {
+  return `${type}${javaGenericTypeSegment(genericTypes)}`;
 }
