@@ -91,7 +91,7 @@ describe('javaClassSegment', () => {
     const output = t(javaClassSegment({
       name: 'Car',
       extendsClass: {
-        name: 'Vehicle'
+        type: 'Vehicle'
       }
     }));
     const expectedClass = readFixture('class/classExtendingClass');
@@ -103,7 +103,7 @@ describe('javaClassSegment', () => {
     const output = t(javaClassSegment({
       name: 'Car',
       extendsClass: {
-        name: 'Vehicle',
+        type: 'Vehicle',
         genericTypes: [{ type: 'Car' }]
       }
     }));
@@ -116,7 +116,7 @@ describe('javaClassSegment', () => {
     const output = t(javaClassSegment({
       name: 'Car',
       extendsClass: {
-        name: 'Vehicle'
+        type: 'Vehicle'
       },
       interfaces: [
         { type: 'CarInterface' },

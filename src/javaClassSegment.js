@@ -15,9 +15,9 @@ function scopeSegment(scope) {
   return scope === 'class' ? 'static ' : '';
 }
 
-function extendsSegment({ name, genericTypes = [] } = {}) {
-  return name
-    ? ` extends ${name}${javaGenericTypeSegment(genericTypes)}`
+function extendsSegment({ type, genericTypes = [] } = {}) {
+  return type
+    ? ` extends ${type}${javaGenericTypeSegment(genericTypes)}`
     : '';
 }
 

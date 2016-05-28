@@ -32,11 +32,11 @@ function scopeSegment(scope) {
 function extendsSegment() {
   var _ref = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-  var name = _ref.name;
+  var type = _ref.type;
   var _ref$genericTypes = _ref.genericTypes;
   var genericTypes = _ref$genericTypes === undefined ? [] : _ref$genericTypes;
 
-  return name ? ' extends ' + name + (0, _javaGenericTypeSegment.javaGenericTypeSegment)(genericTypes) : '';
+  return type ? ' extends ' + type + (0, _javaGenericTypeSegment.javaGenericTypeSegment)(genericTypes) : '';
 }
 
 function classHeaderSegment(accessModifier, name, genericTypes, scope, extendsClass) {
