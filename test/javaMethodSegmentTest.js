@@ -60,6 +60,25 @@ describe('javaMethodSegment', () => {
     assert.equal(output, expectedMethod);
   });
 
+  it('renders generically typed method if these arguments are provided', () => {
+    const { t } = createTemplate();
+    const output = t(javaMethodSegment({
+      name: 'getRandomVehiclesFromList',
+      returnType: { type: 'List', genericTypes: [{ type: 'T' }] },
+      genericTypes: [{ type: 'T', extendsType: { type: 'Vehicle' }}],
+      parameters: [
+        {
+          name: 'vehicleList',
+          type: 'List',
+          genericTypes: [{ type: 'T' }]
+        }
+      ]
+    }));
+    const expectedMethod =
+      readFixture('method/genericallyTypedMethodWithParametersAndGenericTypes');
+    assert.equal(output, expectedMethod);
+  });
+
   it('renders annotations on method if these arguments are provided', () => {
     const { t } = createTemplate();
     const output = t(javaMethodSegment({

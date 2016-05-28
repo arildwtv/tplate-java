@@ -1,9 +1,30 @@
 import { javaAnnotationSegment } from './javaAnnotationSegment';
 import { javaParameterSegment } from './javaParameterSegment';
+import { javaGenericTypeSegment } from './javaGenericTypeSegment';
 
-function javaMethodSegmentWithoutParameters(tplate, {
+function scopeSegment(scope) {
+  return scope === 'class' ? 'static ' : '';
+}
+
+function methodGenericTypeSegment(genericTypes) {
+  return genericTypes.length ? `${javaGenericTypeSegment(genericTypes)} ` : '';
+}
+
+function methodReturnSegment(returnType) {
+  return typeof returnType === 'string'
+    ? returnType
+    : `${returnType.type}${javaGenericTypeSegment(returnType.genericTypes)}`;
+}
+
+function methodSignatureSegment(accessModifier, scope, genericTypes, returnType, name) {
+  return `${accessModifier} ${scopeSegment(scope)}${methodGenericTypeSegment(genericTypes)}` +
+    `${methodReturnSegment(returnType)} ${name}`;
+}
+
+function methodSegmentWithoutParameters(tplate, {
   accessModifier,
   scope,
+  genericTypes,
   returnType,
   name,
   annotations,
@@ -12,15 +33,16 @@ function javaMethodSegmentWithoutParameters(tplate, {
   const { t, indent } = tplate;
   return t(
     annotations.map(javaAnnotationSegment),
-    `${accessModifier} ${scope === 'class' ? 'static ' : ''}${returnType} ${name}() {`,
+    `${methodSignatureSegment(accessModifier, scope, genericTypes, returnType, name)}() {`,
     body ? indent(body(tplate)) : undefined,
     '}'
   );
 }
 
-function javaMethodSegmentWithParameters(tplate, {
+function methodSegmentWithParameters(tplate, {
   accessModifier,
   scope,
+  genericTypes,
   returnType,
   name,
   parameters,
@@ -30,7 +52,7 @@ function javaMethodSegmentWithParameters(tplate, {
   const { t, indent, map } = tplate;
   return t(
     annotations.map(javaAnnotationSegment),
-    `${accessModifier} ${scope === 'class' ? 'static ' : ''}${returnType} ${name}(`,
+    `${methodSignatureSegment(accessModifier, scope, genericTypes, returnType, name)}(`,
     indent(map(parameters, javaParameterSegment)),
     body ? indent(body(tplate)) : undefined,
     '}'
@@ -40,16 +62,26 @@ function javaMethodSegmentWithParameters(tplate, {
 export function javaMethodSegment({
   accessModifier = 'public',
   scope = 'instance',
+  genericTypes = [],
   returnType = 'void',
   name = 'method',
   parameters = [],
   annotations = [],
   body
   } = {}) {
-  const args = { accessModifier, scope, returnType, name, parameters, annotations, body };
+  const args = {
+    accessModifier,
+    scope,
+    genericTypes,
+    returnType,
+    name,
+    parameters,
+    annotations,
+    body
+  };
 
   return tplate =>
     (parameters.length === 0
-      ? javaMethodSegmentWithoutParameters(tplate, args)
-      : javaMethodSegmentWithParameters(tplate, args));
+      ? methodSegmentWithoutParameters(tplate, args)
+      : methodSegmentWithParameters(tplate, args));
 }
