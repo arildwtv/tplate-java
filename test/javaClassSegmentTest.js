@@ -164,7 +164,7 @@ describe('javaClassSegment', () => {
           accessModifier: 'package',
           name: 'nonFinalIntegerFieldWithoutAssignment',
           type: 'Integer',
-          final: false,
+          final: false
         },
         {
           accessModifier: 'public',
