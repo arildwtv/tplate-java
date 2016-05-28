@@ -11,6 +11,8 @@ var _javaParameterSegment = require('./javaParameterSegment');
 
 var _javaGenericTypeSegment = require('./javaGenericTypeSegment');
 
+var _javaAccessModifierSegment = require('./javaAccessModifierSegment');
+
 function scopeSegment(scope) {
   return scope === 'class' ? 'static ' : '';
 }
@@ -24,7 +26,7 @@ function methodReturnSegment(returnType) {
 }
 
 function methodSignatureSegment(accessModifier, scope, genericTypes, returnType, name) {
-  return accessModifier + ' ' + scopeSegment(scope) + methodGenericTypeSegment(genericTypes) + (methodReturnSegment(returnType) + ' ' + name);
+  return '' + (0, _javaAccessModifierSegment.javaAccessModifierSegment)(accessModifier) + scopeSegment(scope) + ('' + methodGenericTypeSegment(genericTypes) + methodReturnSegment(returnType) + ' ' + name);
 }
 
 function methodSegmentWithoutParameters(tplate, _ref) {

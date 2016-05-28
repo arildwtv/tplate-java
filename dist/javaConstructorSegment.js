@@ -9,6 +9,8 @@ var _javaAnnotationSegment = require('./javaAnnotationSegment');
 
 var _javaParameterSegment = require('./javaParameterSegment');
 
+var _javaAccessModifierSegment = require('./javaAccessModifierSegment');
+
 function javaConstructorSegmentWithoutParameters(tplate, _ref) {
   var accessModifier = _ref.accessModifier;
   var name = _ref.name;
@@ -17,7 +19,7 @@ function javaConstructorSegmentWithoutParameters(tplate, _ref) {
   var t = tplate.t;
   var indent = tplate.indent;
 
-  return t(annotations.map(_javaAnnotationSegment.javaAnnotationSegment), accessModifier + ' ' + name + '() {', body ? indent(body(tplate)) : undefined, '}');
+  return t(annotations.map(_javaAnnotationSegment.javaAnnotationSegment), '' + (0, _javaAccessModifierSegment.javaAccessModifierSegment)(accessModifier) + name + '() {', body ? indent(body(tplate)) : undefined, '}');
 }
 
 function javaConstructorSegmentWithParameters(tplate, _ref2) {
@@ -30,7 +32,7 @@ function javaConstructorSegmentWithParameters(tplate, _ref2) {
   var indent = tplate.indent;
   var map = tplate.map;
 
-  return t(annotations.map(_javaAnnotationSegment.javaAnnotationSegment), accessModifier + ' ' + name + '(', indent(map(parameters, _javaParameterSegment.javaParameterSegment)), body ? indent(body(tplate)) : undefined, '}');
+  return t(annotations.map(_javaAnnotationSegment.javaAnnotationSegment), '' + (0, _javaAccessModifierSegment.javaAccessModifierSegment)(accessModifier) + name + '(', indent(map(parameters, _javaParameterSegment.javaParameterSegment)), body ? indent(body(tplate)) : undefined, '}');
 }
 
 function javaConstructorSegment() {
