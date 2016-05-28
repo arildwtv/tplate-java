@@ -17,6 +17,8 @@ var _javaGenericTypeSegment = require('./javaGenericTypeSegment');
 
 var _javaAccessModifierSegment = require('./javaAccessModifierSegment');
 
+var _javaInterfaceImplementationSegment = require('./javaInterfaceImplementationSegment');
+
 var _util = require('./util');
 
 function classNameSegment(name, genericTypes) {
@@ -37,57 +39,49 @@ function extendsSegment() {
   return name ? ' extends ' + name + (0, _javaGenericTypeSegment.javaGenericTypeSegment)(genericTypes) : '';
 }
 
-function interfaceSegment(_ref2) {
-  var name = _ref2.name;
-  var _ref2$genericTypes = _ref2.genericTypes;
-  var genericTypes = _ref2$genericTypes === undefined ? [] : _ref2$genericTypes;
-
-  return '' + name + (0, _javaGenericTypeSegment.javaGenericTypeSegment)(genericTypes);
-}
-
 function classHeaderSegment(accessModifier, name, genericTypes, scope, extendsClass) {
   return '' + (0, _javaAccessModifierSegment.javaAccessModifierSegment)(accessModifier) + scopeSegment(scope) + ('class ' + classNameSegment(name, genericTypes) + extendsSegment(extendsClass));
 }
 
 function javaClassSegment() {
-  var _ref3 = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+  var _ref2 = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-  var _ref3$name = _ref3.name;
-  var name = _ref3$name === undefined ? 'MyClass' : _ref3$name;
-  var _ref3$extendsClass = _ref3.extendsClass;
-  var extendsClass = _ref3$extendsClass === undefined ? undefined : _ref3$extendsClass;
-  var _ref3$genericTypes = _ref3.genericTypes;
-  var genericTypes = _ref3$genericTypes === undefined ? [] : _ref3$genericTypes;
-  var _ref3$accessModifier = _ref3.accessModifier;
-  var accessModifier = _ref3$accessModifier === undefined ? 'public' : _ref3$accessModifier;
-  var _ref3$scope = _ref3.scope;
-  var scope = _ref3$scope === undefined ? 'instance' : _ref3$scope;
-  var _ref3$interfaces = _ref3.interfaces;
-  var interfaces = _ref3$interfaces === undefined ? [] : _ref3$interfaces;
-  var _ref3$annotations = _ref3.annotations;
-  var annotations = _ref3$annotations === undefined ? [] : _ref3$annotations;
-  var _ref3$fields = _ref3.fields;
-  var fields = _ref3$fields === undefined ? [] : _ref3$fields;
-  var _ref3$constructors = _ref3.constructors;
-  var constructors = _ref3$constructors === undefined ? [] : _ref3$constructors;
-  var _ref3$methods = _ref3.methods;
-  var methods = _ref3$methods === undefined ? [] : _ref3$methods;
-  var _ref3$innerClasses = _ref3.innerClasses;
-  var innerClasses = _ref3$innerClasses === undefined ? [] : _ref3$innerClasses;
+  var _ref2$name = _ref2.name;
+  var name = _ref2$name === undefined ? 'MyClass' : _ref2$name;
+  var _ref2$extendsClass = _ref2.extendsClass;
+  var extendsClass = _ref2$extendsClass === undefined ? undefined : _ref2$extendsClass;
+  var _ref2$genericTypes = _ref2.genericTypes;
+  var genericTypes = _ref2$genericTypes === undefined ? [] : _ref2$genericTypes;
+  var _ref2$accessModifier = _ref2.accessModifier;
+  var accessModifier = _ref2$accessModifier === undefined ? 'public' : _ref2$accessModifier;
+  var _ref2$scope = _ref2.scope;
+  var scope = _ref2$scope === undefined ? 'instance' : _ref2$scope;
+  var _ref2$interfaces = _ref2.interfaces;
+  var interfaces = _ref2$interfaces === undefined ? [] : _ref2$interfaces;
+  var _ref2$annotations = _ref2.annotations;
+  var annotations = _ref2$annotations === undefined ? [] : _ref2$annotations;
+  var _ref2$fields = _ref2.fields;
+  var fields = _ref2$fields === undefined ? [] : _ref2$fields;
+  var _ref2$constructors = _ref2.constructors;
+  var constructors = _ref2$constructors === undefined ? [] : _ref2$constructors;
+  var _ref2$methods = _ref2.methods;
+  var methods = _ref2$methods === undefined ? [] : _ref2$methods;
+  var _ref2$innerClasses = _ref2.innerClasses;
+  var innerClasses = _ref2$innerClasses === undefined ? [] : _ref2$innerClasses;
 
   var constructorsWithName = constructors.map(function (c) {
     return Object.assign({}, c, { name: name });
   });
 
-  return function (_ref4) {
-    var t = _ref4.t;
-    var indent = _ref4.indent;
+  return function (_ref3) {
+    var t = _ref3.t;
+    var indent = _ref3.indent;
     return t(
     // Annotation lines
     annotations.length ? annotations.map(_javaAnnotationSegment.javaAnnotationSegment) : undefined,
 
     // Class Header Declaration
-    interfaces.length ? '' + classHeaderSegment(accessModifier, name, genericTypes, scope, extendsClass) : classHeaderSegment(accessModifier, name, genericTypes, scope, extendsClass) + ' {', interfaces.length ? indent('implements ' + interfaces.map(interfaceSegment).join(', ') + ' {') : undefined,
+    interfaces.length ? '' + classHeaderSegment(accessModifier, name, genericTypes, scope, extendsClass) : classHeaderSegment(accessModifier, name, genericTypes, scope, extendsClass) + ' {', interfaces.length ? indent('implements ' + interfaces.map(_javaInterfaceImplementationSegment.javaInterfaceImplementationSegment).join(', ') + ' {') : undefined,
 
     // Field lines
     fields.length ? '' : undefined, fields.length ? indent(fields.map(_javaFieldSegment.javaFieldSegment)) : undefined,

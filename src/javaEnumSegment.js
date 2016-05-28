@@ -2,16 +2,12 @@ import { javaAnnotationSegment } from './javaAnnotationSegment';
 import { javaConstructorSegment } from './javaConstructorSegment';
 import { javaFieldSegment } from './javaFieldSegment';
 import { javaMethodSegment } from './javaMethodSegment';
-import { javaGenericTypeSegment } from './javaGenericTypeSegment';
 import { javaAccessModifierSegment } from './javaAccessModifierSegment';
+import { javaInterfaceImplementationSegment } from './javaInterfaceImplementationSegment';
 import { interweave } from './util';
 
 function scopeSegment(scope) {
   return scope === 'class' ? 'static ' : '';
-}
-
-function interfaceSegment({ name, genericTypes = [] }) {
-  return `${name}${javaGenericTypeSegment(genericTypes)}`;
 }
 
 function constantArgumentsSegment(args) {
@@ -69,7 +65,7 @@ export function javaEnumSegment({
       : `${enumHeaderSegment(accessModifier, scope, name)} {`,
 
     interfaces.length
-      ? indent(`implements ${interfaces.map(interfaceSegment).join(', ')} {`)
+      ? indent(`implements ${interfaces.map(javaInterfaceImplementationSegment).join(', ')} {`)
       : undefined,
 
     // Constant lines

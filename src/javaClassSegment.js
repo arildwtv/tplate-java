@@ -4,6 +4,7 @@ import { javaMethodSegment } from './javaMethodSegment';
 import { javaFieldSegment } from './javaFieldSegment';
 import { javaGenericTypeSegment } from './javaGenericTypeSegment';
 import { javaAccessModifierSegment } from './javaAccessModifierSegment';
+import { javaInterfaceImplementationSegment } from './javaInterfaceImplementationSegment';
 import { interweave } from './util';
 
 function classNameSegment(name, genericTypes) {
@@ -18,10 +19,6 @@ function extendsSegment({ name, genericTypes = [] } = {}) {
   return name
     ? ` extends ${name}${javaGenericTypeSegment(genericTypes)}`
     : '';
-}
-
-function interfaceSegment({ name, genericTypes = [] }) {
-  return `${name}${javaGenericTypeSegment(genericTypes)}`;
 }
 
 function classHeaderSegment(accessModifier, name, genericTypes, scope, extendsClass) {
@@ -54,7 +51,7 @@ export function javaClassSegment({
       : `${classHeaderSegment(accessModifier, name, genericTypes, scope, extendsClass)} {`,
 
     interfaces.length
-      ? indent(`implements ${interfaces.map(interfaceSegment).join(', ')} {`)
+      ? indent(`implements ${interfaces.map(javaInterfaceImplementationSegment).join(', ')} {`)
       : undefined,
 
     // Field lines
