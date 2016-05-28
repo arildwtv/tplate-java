@@ -1,0 +1,4 @@
+@JsonIgnoreProperties
+@SuppressWarnings("unchecked")
+public class MyClass {
+}

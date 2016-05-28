@@ -1,0 +1,6 @@
+public class MyClass {
+
+  private final String finalStringFieldWithAssignment = "A string value";
+  private Integer nonFinalIntegerFieldWithoutAssignment;
+  public final List<List<Boolean>> publicBooleanListListField;
+}

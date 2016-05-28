@@ -1,0 +1,7 @@
+@MySetOfAnnotations(
+  setName = "foo",
+  annotations = {
+    @MyBarAnno(1337),
+    @MyBazAnno(1338)
+  }
+)

@@ -1,0 +1,6 @@
+@Override
+@SuppressWarnings("unchecked")
+public void setPerson(
+  final String name,
+  final int age) {
+}

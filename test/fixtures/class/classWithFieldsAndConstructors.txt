@@ -1,0 +1,20 @@
+public class Person {
+
+  private final String firstName;
+  private final String lastName;
+  private final int age;
+
+  public Person(
+    final String firstName,
+    final String lastName,
+    final int age) {
+  }
+
+  public Person(
+    final String firstName,
+    final String lastName) {
+  }
+
+  public Person() {
+  }
+}

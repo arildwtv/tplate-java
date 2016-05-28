@@ -1,0 +1,7 @@
+@MyAnnotation(
+  val1 = 123,
+  val2 = "456"
+)
+@MyOtherAnnotation(false)
+public MyClass() {
+}

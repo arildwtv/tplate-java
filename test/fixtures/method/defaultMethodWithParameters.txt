@@ -1,0 +1,5 @@
+public void method(
+  final String myString,
+  final int myInt,
+  boolean myBool) {
+}

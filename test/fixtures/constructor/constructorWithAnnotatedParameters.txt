@@ -1,0 +1,6 @@
+public MyClass(
+  @JsonProperty("myString")
+  @AnotherAnnotation(1234)
+  final String myString,
+  final int myInt) {
+}

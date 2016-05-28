@@ -1,0 +1,8 @@
+@SuppressWarnings(
+  firstVar = "foo",
+  secondVar = {
+    "bar",
+    "baz"
+  },
+  thirdVar = 1337
+)

@@ -1,0 +1,6 @@
+public void method(
+  final String myString,
+  @JsonProperty("myInt")
+  @Default(1234)
+  final int myInt) {
+}

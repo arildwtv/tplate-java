@@ -1,0 +1,21 @@
+public class Person {
+
+  private final String firstName;
+
+  public Person(
+    final String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void printFirstName() {
+    System.out.println(firstName);
+  }
+
+  public static Person createVikram() {
+    return new Person("Vikram");
+  }
+}
