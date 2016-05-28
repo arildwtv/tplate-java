@@ -1,11 +1,8 @@
 import { javaAnnotationSegment } from './javaAnnotationSegment';
 import { javaConstructorSegment } from './javaConstructorSegment';
 import { javaMethodSegment } from './javaMethodSegment';
+import { javaFieldSegment } from './javaFieldSegment';
 import { javaGenericTypeSegment } from './javaGenericTypeSegment';
-
-function getValue(tplate, value) {
-  return typeof value === 'function' ? value(tplate) : value;
-}
 
 function interweave(array, interweaveItem = '') {
   const interwovenArray = array.reduce((prevArray, item) =>
@@ -31,27 +28,6 @@ function extendsSegment({ name, genericTypes = [] } = {}) {
 
 function interfaceSegment({ name, genericTypes = [] }) {
   return `${name}${javaGenericTypeSegment(genericTypes)}`;
-}
-
-function classFieldSegment({
-  accessModifier = 'private',
-  scope = 'instance',
-  final = true,
-  type = 'String',
-  genericTypes = [],
-  name,
-  assign
-  } = {}) {
-  const scopeString = scope === 'class' ? ' static' : '';
-  const finalString = final ? ' final' : '';
-  return tplate => {
-    const { t } = tplate;
-    const assignString = assign ? ` = ${getValue(tplate, assign)}` : '';
-    return t(
-      `${accessModifier}${scopeString}${finalString} ` +
-      `${type}${javaGenericTypeSegment(genericTypes)} ${name}${assignString};`
-    );
-  };
 }
 
 export function javaClassSegment({
@@ -86,7 +62,7 @@ export function javaClassSegment({
 
     // Field lines
     fields.length ? '' : undefined,
-    fields.length ? indent(fields.map(classFieldSegment)) : undefined,
+    fields.length ? indent(fields.map(javaFieldSegment)) : undefined,
 
     // Constructors
     constructors.length
