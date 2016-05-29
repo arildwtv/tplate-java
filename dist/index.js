@@ -2,6 +2,8 @@
 
 var _packageSegment = require('./packageSegment');
 
+var _importSegment = require('./importSegment');
+
 var _classSegment = require('./classSegment');
 
 var _constructorSegment = require('./constructorSegment');
@@ -22,6 +24,7 @@ var _interfaceSegment = require('./interfaceSegment');
 
 module.exports = {
   packageSegment: _packageSegment.packageSegment,
+  importSegment: _importSegment.importSegment,
   classSegment: _classSegment.classSegment,
   constructorSegment: _constructorSegment.constructorSegment,
   methodSegment: _methodSegment.methodSegment,

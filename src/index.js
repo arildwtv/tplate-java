@@ -1,4 +1,5 @@
 import { packageSegment } from './packageSegment';
+import { importSegment } from './importSegment';
 import { classSegment } from './classSegment';
 import { constructorSegment } from './constructorSegment';
 import { methodSegment } from './methodSegment';
@@ -11,6 +12,7 @@ import { interfaceSegment } from './interfaceSegment';
 
 module.exports = {
   packageSegment,
+  importSegment,
   classSegment,
   constructorSegment,
   methodSegment,
