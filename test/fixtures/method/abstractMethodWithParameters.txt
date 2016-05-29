@@ -1,0 +1,3 @@
+public abstract void method(
+  final String myString,
+  final int myInt);

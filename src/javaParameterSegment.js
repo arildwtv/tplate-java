@@ -13,12 +13,13 @@ export function javaParameterSegment({
   type = 'String',
   genericTypes = [],
   final = true,
-  annotations = []
+  annotations = [],
+  afterLastParameter = ') {'
   } = {},
   { IS_LAST } = {}) {
   return ({ t }) => t(
     annotations.map(javaAnnotationSegment),
     `${finalSegment(final)}${type}${parameterGenericTypeSegment(genericTypes)} ` +
-    `${name}${IS_LAST ? ') {' : ','}`
+    `${name}${IS_LAST ? afterLastParameter : ','}`
   );
 }

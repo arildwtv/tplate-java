@@ -3,6 +3,9 @@ import { javaParameterSegment } from './javaParameterSegment';
 import { javaGenericTypeSegment } from './javaGenericTypeSegment';
 import { javaAccessModifierSegment } from './javaAccessModifierSegment';
 
+function abstractSegment(abstract) {
+  return abstract ? 'abstract ' : '';
+}
 function scopeSegment(scope) {
   return scope === 'class' ? 'static ' : '';
 }
@@ -17,13 +20,22 @@ function methodReturnSegment(returnType) {
     : `${returnType.type}${javaGenericTypeSegment(returnType.genericTypes)}`;
 }
 
-function methodSignatureSegment(accessModifier, scope, genericTypes, returnType, name) {
-  return `${javaAccessModifierSegment(accessModifier)}${scopeSegment(scope)}` +
-    `${methodGenericTypeSegment(genericTypes)}${methodReturnSegment(returnType)} ${name}`;
+function methodSignatureSegment({
+  accessModifier,
+  abstract,
+  scope,
+  genericTypes,
+  returnType,
+  name
+  } ) {
+  return `${javaAccessModifierSegment(accessModifier)}${abstractSegment(abstract)}` +
+    `${scopeSegment(scope)}${methodGenericTypeSegment(genericTypes)}` +
+    `${methodReturnSegment(returnType)} ${name}`;
 }
 
 function methodSegmentWithoutParameters(tplate, {
   accessModifier,
+  abstract,
   scope,
   genericTypes,
   returnType,
@@ -32,16 +44,20 @@ function methodSegmentWithoutParameters(tplate, {
   body
   }) {
   const { t, indent } = tplate;
+  const methodSignature = { accessModifier, abstract, scope, genericTypes, returnType, name };
   return t(
     annotations.map(javaAnnotationSegment),
-    `${methodSignatureSegment(accessModifier, scope, genericTypes, returnType, name)}() {`,
+    abstract
+      ? `${methodSignatureSegment(methodSignature)}();`
+      : `${methodSignatureSegment(methodSignature)}() {`,
     body ? indent(body(tplate)) : undefined,
-    '}'
+    abstract ? undefined : '}'
   );
 }
 
 function methodSegmentWithParameters(tplate, {
   accessModifier,
+  abstract,
   scope,
   genericTypes,
   returnType,
@@ -51,17 +67,23 @@ function methodSegmentWithParameters(tplate, {
   body
   }) {
   const { t, indent, map } = tplate;
+  const methodSignature = { accessModifier, abstract, scope, genericTypes, returnType, name };
+
+  const abstractAwareParameters = parameters.map(p =>
+    Object.assign({}, p, { afterLastParameter: abstract ? ');' : ') {' }));
+
   return t(
     annotations.map(javaAnnotationSegment),
-    `${methodSignatureSegment(accessModifier, scope, genericTypes, returnType, name)}(`,
-    indent(map(parameters, javaParameterSegment)),
+    `${methodSignatureSegment(methodSignature)}(`,
+    indent(map(abstractAwareParameters, javaParameterSegment)),
     body ? indent(body(tplate)) : undefined,
-    '}'
+    abstract ? undefined : '}'
   );
 }
 
 export function javaMethodSegment({
   accessModifier = 'public',
+  abstract = false,
   scope = 'instance',
   genericTypes = [],
   returnType = 'void',
@@ -72,13 +94,14 @@ export function javaMethodSegment({
   } = {}) {
   const args = {
     accessModifier,
+    abstract,
     scope,
     genericTypes,
     returnType,
     name,
     parameters,
     annotations,
-    body
+    body: abstract ? undefined : body
   };
 
   return tplate =>

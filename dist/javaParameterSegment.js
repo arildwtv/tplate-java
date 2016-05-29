@@ -28,6 +28,8 @@ function javaParameterSegment() {
   var final = _ref$final === undefined ? true : _ref$final;
   var _ref$annotations = _ref.annotations;
   var annotations = _ref$annotations === undefined ? [] : _ref$annotations;
+  var _ref$afterLastParamet = _ref.afterLastParameter;
+  var afterLastParameter = _ref$afterLastParamet === undefined ? ') {' : _ref$afterLastParamet;
 
   var _ref2 = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
@@ -35,6 +37,6 @@ function javaParameterSegment() {
 
   return function (_ref3) {
     var t = _ref3.t;
-    return t(annotations.map(_javaAnnotationSegment.javaAnnotationSegment), '' + finalSegment(final) + type + parameterGenericTypeSegment(genericTypes) + ' ' + ('' + name + (IS_LAST ? ') {' : ',')));
+    return t(annotations.map(_javaAnnotationSegment.javaAnnotationSegment), '' + finalSegment(final) + type + parameterGenericTypeSegment(genericTypes) + ' ' + ('' + name + (IS_LAST ? afterLastParameter : ',')));
   };
 }

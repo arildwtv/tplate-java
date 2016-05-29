@@ -10,6 +10,7 @@ describe('javaMethodSegment', () => {
     const expectedMethod = readFixture('method/defaultMethod');
     assert.equal(output, expectedMethod);
   });
+
   it('renders package accessed method without explicity access modifier if these arguments are provided', () => {
     const { t } = createTemplate();
     const output = t(javaMethodSegment({
@@ -118,6 +119,29 @@ describe('javaMethodSegment', () => {
       body: ({ t }) => t('System.out.println("Hello!");')
     }));
     const expectedMethod = readFixture('method/defaultMethodWithBody');
+    assert.equal(output, expectedMethod);
+  });
+
+  it('renders abstract method if the argument is provided', () => {
+    const { t } = createTemplate();
+    const output = t(javaMethodSegment({
+      abstract: true
+    }));
+    const expectedMethod = readFixture('method/abstractMethod');
+    assert.equal(output, expectedMethod);
+  });
+
+  it('renders abstract method without body even if the body argument is provided', () => {
+    const { t } = createTemplate();
+    const output = t(javaMethodSegment({
+      abstract: true,
+      parameters: [
+        { name: 'myString', type: 'String' },
+        { name: 'myInt', type: 'int' }
+      ],
+      body: ({ t }) => t('Should.not.be.rendered();')
+    }));
+    const expectedMethod = readFixture('method/abstractMethodWithParameters');
     assert.equal(output, expectedMethod);
   });
 });
