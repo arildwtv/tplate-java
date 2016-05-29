@@ -1,5 +1,7 @@
 'use strict';
 
+var _packageSegment = require('./packageSegment');
+
 var _classSegment = require('./classSegment');
 
 var _constructorSegment = require('./constructorSegment');
@@ -19,6 +21,7 @@ var _genericTypeSegment = require('./genericTypeSegment');
 var _interfaceSegment = require('./interfaceSegment');
 
 module.exports = {
+  packageSegment: _packageSegment.packageSegment,
   classSegment: _classSegment.classSegment,
   constructorSegment: _constructorSegment.constructorSegment,
   methodSegment: _methodSegment.methodSegment,
