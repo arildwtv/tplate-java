@@ -1,21 +1,21 @@
-import { javaClassSegment } from './javaClassSegment';
-import { javaConstructorSegment } from './javaConstructorSegment';
-import { javaMethodSegment } from './javaMethodSegment';
-import { javaAnnotationSegment } from './javaAnnotationSegment';
-import { javaEnumSegment } from './javaEnumSegment';
-import { javaStringLiteralSegment } from './javaStringLiteralSegment';
-import { javaArrayLiteralSegment } from './javaArrayLiteralSegment';
-import { javaGenericTypeSegment } from './javaGenericTypeSegment';
-import { javaInterfaceSegment } from './javaInterfaceSegment';
+import { classSegment } from './classSegment';
+import { constructorSegment } from './constructorSegment';
+import { methodSegment } from './methodSegment';
+import { annotationSegment } from './annotationSegment';
+import { enumSegment } from './enumSegment';
+import { stringLiteralSegment } from './stringLiteralSegment';
+import { arrayLiteralSegment } from './arrayLiteralSegment';
+import { genericTypeSegment } from './genericTypeSegment';
+import { interfaceSegment } from './interfaceSegment';
 
 module.exports = {
-  javaClassSegment,
-  javaConstructorSegment,
-  javaMethodSegment,
-  javaAnnotationSegment,
-  javaEnumSegment,
-  javaInterfaceSegment,
-  javaStringLiteralSegment,
-  javaArrayLiteralSegment,
-  javaGenericTypeSegment
+  classSegment,
+  constructorSegment,
+  methodSegment,
+  annotationSegment,
+  enumSegment,
+  interfaceSegment,
+  stringLiteralSegment,
+  arrayLiteralSegment,
+  genericTypeSegment
 };

@@ -1,31 +1,31 @@
 'use strict';
 
-var _javaClassSegment = require('./javaClassSegment');
+var _classSegment = require('./classSegment');
 
-var _javaConstructorSegment = require('./javaConstructorSegment');
+var _constructorSegment = require('./constructorSegment');
 
-var _javaMethodSegment = require('./javaMethodSegment');
+var _methodSegment = require('./methodSegment');
 
-var _javaAnnotationSegment = require('./javaAnnotationSegment');
+var _annotationSegment = require('./annotationSegment');
 
-var _javaEnumSegment = require('./javaEnumSegment');
+var _enumSegment = require('./enumSegment');
 
-var _javaStringLiteralSegment = require('./javaStringLiteralSegment');
+var _stringLiteralSegment = require('./stringLiteralSegment');
 
-var _javaArrayLiteralSegment = require('./javaArrayLiteralSegment');
+var _arrayLiteralSegment = require('./arrayLiteralSegment');
 
-var _javaGenericTypeSegment = require('./javaGenericTypeSegment');
+var _genericTypeSegment = require('./genericTypeSegment');
 
-var _javaInterfaceSegment = require('./javaInterfaceSegment');
+var _interfaceSegment = require('./interfaceSegment');
 
 module.exports = {
-  javaClassSegment: _javaClassSegment.javaClassSegment,
-  javaConstructorSegment: _javaConstructorSegment.javaConstructorSegment,
-  javaMethodSegment: _javaMethodSegment.javaMethodSegment,
-  javaAnnotationSegment: _javaAnnotationSegment.javaAnnotationSegment,
-  javaEnumSegment: _javaEnumSegment.javaEnumSegment,
-  javaInterfaceSegment: _javaInterfaceSegment.javaInterfaceSegment,
-  javaStringLiteralSegment: _javaStringLiteralSegment.javaStringLiteralSegment,
-  javaArrayLiteralSegment: _javaArrayLiteralSegment.javaArrayLiteralSegment,
-  javaGenericTypeSegment: _javaGenericTypeSegment.javaGenericTypeSegment
+  classSegment: _classSegment.classSegment,
+  constructorSegment: _constructorSegment.constructorSegment,
+  methodSegment: _methodSegment.methodSegment,
+  annotationSegment: _annotationSegment.annotationSegment,
+  enumSegment: _enumSegment.enumSegment,
+  interfaceSegment: _interfaceSegment.interfaceSegment,
+  stringLiteralSegment: _stringLiteralSegment.stringLiteralSegment,
+  arrayLiteralSegment: _arrayLiteralSegment.arrayLiteralSegment,
+  genericTypeSegment: _genericTypeSegment.genericTypeSegment
 };
