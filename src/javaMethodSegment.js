@@ -27,7 +27,7 @@ function methodSignatureSegment({
   genericTypes,
   returnType,
   name
-  } ) {
+  }) {
   return `${javaAccessModifierSegment(accessModifier)}${abstractSegment(abstract)}` +
     `${scopeSegment(scope)}${methodGenericTypeSegment(genericTypes)}` +
     `${methodReturnSegment(returnType)} ${name}`;
@@ -45,7 +45,7 @@ function methodSegmentWithoutParameters(tplate, {
   body
   }) {
   const { t, indent } = tplate;
-  const methodSignature = { accessModifier, abstract, scope, genericTypes, returnType, name };
+  const methodSignature = { accessModifier, abstract, scope, genericTypes, returnType, name };
   return t(
     annotations.map(javaAnnotationSegment),
     abstract || inInterface
