@@ -1,0 +1,3 @@
+void aMethodWithPeople(
+  final List<Person> people,
+  final Person person);

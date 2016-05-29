@@ -144,4 +144,27 @@ describe('javaMethodSegment', () => {
     const expectedMethod = readFixture('method/abstractMethodWithParameters');
     assert.equal(output, expectedMethod);
   });
+
+  it('renders interface method if the argument is provided', () => {
+    const { t } = createTemplate();
+    const output = t(javaMethodSegment({
+      inInterface: true
+    }));
+    const expectedMethod = readFixture('method/interfaceMethod');
+    assert.equal(output, expectedMethod);
+  });
+
+  it('renders interface method without body even if the body argument is provided', () => {
+    const { t } = createTemplate();
+    const output = t(javaMethodSegment({
+      inInterface: true,
+      name: 'aMethodWithPeople',
+      parameters: [
+        { name: 'people', type: 'List', genericTypes: [{ type: 'Person' }]},
+        { name: 'person', type: 'Person' }
+      ]
+    }));
+    const expectedMethod = readFixture('method/interfaceMethodWithParameters');
+    assert.equal(output, expectedMethod);
+  });
 });

@@ -42,6 +42,7 @@ function methodSignatureSegment(_ref) {
 function methodSegmentWithoutParameters(tplate, _ref2) {
   var accessModifier = _ref2.accessModifier;
   var abstract = _ref2.abstract;
+  var inInterface = _ref2.inInterface;
   var scope = _ref2.scope;
   var genericTypes = _ref2.genericTypes;
   var returnType = _ref2.returnType;
@@ -52,12 +53,13 @@ function methodSegmentWithoutParameters(tplate, _ref2) {
   var indent = tplate.indent;
 
   var methodSignature = { accessModifier: accessModifier, abstract: abstract, scope: scope, genericTypes: genericTypes, returnType: returnType, name: name };
-  return t(annotations.map(_javaAnnotationSegment.javaAnnotationSegment), abstract ? methodSignatureSegment(methodSignature) + '();' : methodSignatureSegment(methodSignature) + '() {', body ? indent(body(tplate)) : undefined, abstract ? undefined : '}');
+  return t(annotations.map(_javaAnnotationSegment.javaAnnotationSegment), abstract || inInterface ? methodSignatureSegment(methodSignature) + '();' : methodSignatureSegment(methodSignature) + '() {', body ? indent(body(tplate)) : undefined, abstract || inInterface ? undefined : '}');
 }
 
 function methodSegmentWithParameters(tplate, _ref3) {
   var accessModifier = _ref3.accessModifier;
   var abstract = _ref3.abstract;
+  var inInterface = _ref3.inInterface;
   var scope = _ref3.scope;
   var genericTypes = _ref3.genericTypes;
   var returnType = _ref3.returnType;
@@ -72,10 +74,12 @@ function methodSegmentWithParameters(tplate, _ref3) {
   var methodSignature = { accessModifier: accessModifier, abstract: abstract, scope: scope, genericTypes: genericTypes, returnType: returnType, name: name };
 
   var abstractAwareParameters = parameters.map(function (p) {
-    return Object.assign({}, p, { afterLastParameter: abstract ? ');' : ') {' });
+    return Object.assign({}, p, {
+      afterLastParameter: abstract || inInterface ? ');' : ') {'
+    });
   });
 
-  return t(annotations.map(_javaAnnotationSegment.javaAnnotationSegment), methodSignatureSegment(methodSignature) + '(', indent(map(abstractAwareParameters, _javaParameterSegment.javaParameterSegment)), body ? indent(body(tplate)) : undefined, abstract ? undefined : '}');
+  return t(annotations.map(_javaAnnotationSegment.javaAnnotationSegment), methodSignatureSegment(methodSignature) + '(', indent(map(abstractAwareParameters, _javaParameterSegment.javaParameterSegment)), body ? indent(body(tplate)) : undefined, abstract || inInterface ? undefined : '}');
 }
 
 function javaMethodSegment() {
@@ -85,6 +89,8 @@ function javaMethodSegment() {
   var accessModifier = _ref4$accessModifier === undefined ? 'public' : _ref4$accessModifier;
   var _ref4$abstract = _ref4.abstract;
   var abstract = _ref4$abstract === undefined ? false : _ref4$abstract;
+  var _ref4$inInterface = _ref4.inInterface;
+  var inInterface = _ref4$inInterface === undefined ? false : _ref4$inInterface;
   var _ref4$scope = _ref4.scope;
   var scope = _ref4$scope === undefined ? 'instance' : _ref4$scope;
   var _ref4$genericTypes = _ref4.genericTypes;
@@ -100,8 +106,9 @@ function javaMethodSegment() {
   var body = _ref4.body;
 
   var args = {
-    accessModifier: accessModifier,
+    accessModifier: inInterface ? 'package' : accessModifier,
     abstract: abstract,
+    inInterface: inInterface,
     scope: scope,
     genericTypes: genericTypes,
     returnType: returnType,

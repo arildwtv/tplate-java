@@ -36,6 +36,7 @@ function methodSignatureSegment({
 function methodSegmentWithoutParameters(tplate, {
   accessModifier,
   abstract,
+  inInterface,
   scope,
   genericTypes,
   returnType,
@@ -47,17 +48,18 @@ function methodSegmentWithoutParameters(tplate, {
   const methodSignature = { accessModifier, abstract, scope, genericTypes, returnType, name };
   return t(
     annotations.map(javaAnnotationSegment),
-    abstract
+    abstract || inInterface
       ? `${methodSignatureSegment(methodSignature)}();`
       : `${methodSignatureSegment(methodSignature)}() {`,
     body ? indent(body(tplate)) : undefined,
-    abstract ? undefined : '}'
+    abstract || inInterface ? undefined : '}'
   );
 }
 
 function methodSegmentWithParameters(tplate, {
   accessModifier,
   abstract,
+  inInterface,
   scope,
   genericTypes,
   returnType,
@@ -70,20 +72,23 @@ function methodSegmentWithParameters(tplate, {
   const methodSignature = { accessModifier, abstract, scope, genericTypes, returnType, name };
 
   const abstractAwareParameters = parameters.map(p =>
-    Object.assign({}, p, { afterLastParameter: abstract ? ');' : ') {' }));
+    Object.assign({}, p, {
+      afterLastParameter: abstract || inInterface ? ');' : ') {'
+    }));
 
   return t(
     annotations.map(javaAnnotationSegment),
     `${methodSignatureSegment(methodSignature)}(`,
     indent(map(abstractAwareParameters, javaParameterSegment)),
     body ? indent(body(tplate)) : undefined,
-    abstract ? undefined : '}'
+    abstract || inInterface ? undefined : '}'
   );
 }
 
 export function javaMethodSegment({
   accessModifier = 'public',
   abstract = false,
+  inInterface = false,
   scope = 'instance',
   genericTypes = [],
   returnType = 'void',
@@ -93,8 +98,9 @@ export function javaMethodSegment({
   body
   } = {}) {
   const args = {
-    accessModifier,
+    accessModifier: inInterface ? 'package' : accessModifier,
     abstract,
+    inInterface,
     scope,
     genericTypes,
     returnType,
