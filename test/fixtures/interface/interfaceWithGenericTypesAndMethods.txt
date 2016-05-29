@@ -1,0 +1,8 @@
+public interface Mapper<T, U> {
+
+  U map(
+    final T input);
+
+  T mapBack(
+    final U input);
+}

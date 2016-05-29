@@ -16,12 +16,15 @@ var _javaArrayLiteralSegment = require('./javaArrayLiteralSegment');
 
 var _javaGenericTypeSegment = require('./javaGenericTypeSegment');
 
+var _javaInterfaceSegment = require('./javaInterfaceSegment');
+
 module.exports = {
   javaClassSegment: _javaClassSegment.javaClassSegment,
   javaConstructorSegment: _javaConstructorSegment.javaConstructorSegment,
   javaMethodSegment: _javaMethodSegment.javaMethodSegment,
   javaAnnotationSegment: _javaAnnotationSegment.javaAnnotationSegment,
   javaEnumSegment: _javaEnumSegment.javaEnumSegment,
+  javaInterfaceSegment: _javaInterfaceSegment.javaInterfaceSegment,
   javaStringLiteralSegment: _javaStringLiteralSegment.javaStringLiteralSegment,
   javaArrayLiteralSegment: _javaArrayLiteralSegment.javaArrayLiteralSegment,
   javaGenericTypeSegment: _javaGenericTypeSegment.javaGenericTypeSegment

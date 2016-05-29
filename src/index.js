@@ -6,6 +6,7 @@ import { javaEnumSegment } from './javaEnumSegment';
 import { javaStringLiteralSegment } from './javaStringLiteralSegment';
 import { javaArrayLiteralSegment } from './javaArrayLiteralSegment';
 import { javaGenericTypeSegment } from './javaGenericTypeSegment';
+import { javaInterfaceSegment } from './javaInterfaceSegment';
 
 module.exports = {
   javaClassSegment,
@@ -13,6 +14,7 @@ module.exports = {
   javaMethodSegment,
   javaAnnotationSegment,
   javaEnumSegment,
+  javaInterfaceSegment,
   javaStringLiteralSegment,
   javaArrayLiteralSegment,
   javaGenericTypeSegment

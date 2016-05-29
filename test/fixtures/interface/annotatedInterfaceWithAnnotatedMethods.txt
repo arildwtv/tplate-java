@@ -1,0 +1,13 @@
+@Deprecated
+@AnotherAnnotation(555)
+public interface MyAnnotatedInterface {
+
+  @OneMethodAnnotation
+  void oneMethod();
+
+  @AnotherMethodAnnotation(
+    awe = "some"
+  )
+  void anotherMethod(
+    final Boolean trueOrFalse);
+}
