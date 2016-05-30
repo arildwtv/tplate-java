@@ -1,7 +1,6 @@
 import assert from 'assert';
 import { createTemplate } from 'tplate';
 import { importSegment } from '../src';
-import { readFixture } from './testUtil';
 
 describe('importSegment', () => {
   it('renders non-static import by default', () => {
