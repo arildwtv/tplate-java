@@ -9,6 +9,7 @@ import { stringLiteralSegment } from './stringLiteralSegment';
 import { arrayLiteralSegment } from './arrayLiteralSegment';
 import { genericTypeSegment } from './genericTypeSegment';
 import { interfaceSegment } from './interfaceSegment';
+import { fileSegment } from './fileSegment';
 
 module.exports = {
   packageSegment,
@@ -21,5 +22,6 @@ module.exports = {
   interfaceSegment,
   stringLiteralSegment,
   arrayLiteralSegment,
-  genericTypeSegment
+  genericTypeSegment,
+  fileSegment
 };

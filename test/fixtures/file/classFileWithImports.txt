@@ -1,0 +1,9 @@
+package com.example.mypackage;
+
+import java.util.List;
+import java.util.Date;
+
+public class MyClass {
+
+  private List<Date> list;
+}

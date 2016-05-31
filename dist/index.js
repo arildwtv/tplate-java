@@ -22,6 +22,8 @@ var _genericTypeSegment = require('./genericTypeSegment');
 
 var _interfaceSegment = require('./interfaceSegment');
 
+var _fileSegment = require('./fileSegment');
+
 module.exports = {
   packageSegment: _packageSegment.packageSegment,
   importSegment: _importSegment.importSegment,
@@ -33,5 +35,6 @@ module.exports = {
   interfaceSegment: _interfaceSegment.interfaceSegment,
   stringLiteralSegment: _stringLiteralSegment.stringLiteralSegment,
   arrayLiteralSegment: _arrayLiteralSegment.arrayLiteralSegment,
-  genericTypeSegment: _genericTypeSegment.genericTypeSegment
+  genericTypeSegment: _genericTypeSegment.genericTypeSegment,
+  fileSegment: _fileSegment.fileSegment
 };
