@@ -10,8 +10,9 @@ import { arrayLiteralSegment } from './arrayLiteralSegment';
 import { genericTypeSegment } from './genericTypeSegment';
 import { interfaceSegment } from './interfaceSegment';
 import { fileSegment } from './fileSegment';
+import { applyMiddleware } from './applyMiddleware';
 
-module.exports = {
+const javaSegments = {
   packageSegment,
   importSegment,
   classSegment,
@@ -25,3 +26,7 @@ module.exports = {
   genericTypeSegment,
   fileSegment
 };
+
+module.exports = Object.assign({}, javaSegments, {
+  applyMiddleware: applyMiddleware.bind(undefined, javaSegments)
+});

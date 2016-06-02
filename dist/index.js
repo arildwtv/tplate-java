@@ -24,7 +24,9 @@ var _interfaceSegment = require('./interfaceSegment');
 
 var _fileSegment = require('./fileSegment');
 
-module.exports = {
+var _applyMiddleware = require('./applyMiddleware');
+
+var javaSegments = {
   packageSegment: _packageSegment.packageSegment,
   importSegment: _importSegment.importSegment,
   classSegment: _classSegment.classSegment,
@@ -38,3 +40,7 @@ module.exports = {
   genericTypeSegment: _genericTypeSegment.genericTypeSegment,
   fileSegment: _fileSegment.fileSegment
 };
+
+module.exports = Object.assign({}, javaSegments, {
+  applyMiddleware: _applyMiddleware.applyMiddleware.bind(undefined, javaSegments)
+});
