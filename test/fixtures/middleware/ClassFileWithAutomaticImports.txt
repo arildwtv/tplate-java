@@ -1,0 +1,15 @@
+package com.my.example;
+
+import org.springframework.stereotype.Component;
+import com.my.package.another.SuperAwesomeClass;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.my.package.yet.another.UnicornDao;
+
+@Component
+public class AwesomeComponent extends SuperAwesomeClass {
+
+  private final String myAwesomeString;
+
+  @Autowired
+  private final UnicornDao myAwesomeUnicornDao;
+}
