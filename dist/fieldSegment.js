@@ -11,9 +11,13 @@ var _util = require('./util');
 
 var _accessModifierSegment = require('./accessModifierSegment');
 
+var _annotationSegment = require('./annotationSegment');
+
 function fieldSegment() {
   var _ref = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
+  var _ref$annotations = _ref.annotations;
+  var annotations = _ref$annotations === undefined ? [] : _ref$annotations;
   var _ref$accessModifier = _ref.accessModifier;
   var accessModifier = _ref$accessModifier === undefined ? 'private' : _ref$accessModifier;
   var _ref$scope = _ref.scope;
@@ -33,6 +37,6 @@ function fieldSegment() {
     var t = tplate.t;
 
     var assignString = assign ? ' = ' + (0, _util.getValueOrRenderSegment)(tplate, assign) : '';
-    return t('' + (0, _accessModifierSegment.accessModifierSegment)(accessModifier) + scopeString + finalString + ('' + type + (0, _genericTypeSegment.genericTypeSegment)(genericTypes) + ' ' + name + assignString + ';'));
+    return t(annotations.map(_annotationSegment.annotationSegment), '' + (0, _accessModifierSegment.accessModifierSegment)(accessModifier) + scopeString + finalString + ('' + type + (0, _genericTypeSegment.genericTypeSegment)(genericTypes) + ' ' + name + assignString + ';'));
   };
 }

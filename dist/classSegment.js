@@ -84,7 +84,7 @@ function classSegment() {
     interfaces.length ? '' + classHeaderSegment(accessModifier, name, genericTypes, scope, extendsClass) : classHeaderSegment(accessModifier, name, genericTypes, scope, extendsClass) + ' {', interfaces.length ? indent('implements ' + interfaces.map(_interfaceImplementationSegment.interfaceImplementationSegment).join(', ') + ' {') : undefined,
 
     // Field lines
-    fields.length ? '' : undefined, fields.length ? indent(fields.map(_fieldSegment.fieldSegment)) : undefined,
+    fields.length ? '' : undefined, fields.length ? indent((0, _util.interweave)(fields.map(_fieldSegment.fieldSegment))) : undefined,
 
     // Constructors
     constructors.length ? '' : undefined, constructors.length ? indent((0, _util.interweave)(constructorsWithName.map(_constructorSegment.constructorSegment))) : undefined,

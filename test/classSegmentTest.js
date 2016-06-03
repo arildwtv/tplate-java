@@ -247,6 +247,19 @@ describe('classSegment', () => {
     assert.equal(output, expectedClass);
   });
 
+  it('renders annotated fields, constructors and methods in class if these arguments are provided', () => {
+    const { t } = createTemplate();
+    const output = t(classSegment({
+      name: 'Person',
+      fields: [
+        { name: 'name', annotations: [{ type: 'Deprecated' }] },
+        { name: 'lastName' }
+      ]
+    }));
+    const expectedClass = readFixture('class/classWithAnnotatedFields');
+    assert.equal(output, expectedClass);
+  });
+
   it('renders inner class in class if these arguments are provided', () => {
     const { t } = createTemplate();
     const output = t(classSegment({

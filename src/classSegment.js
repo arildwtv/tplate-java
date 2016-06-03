@@ -56,7 +56,7 @@ export function classSegment({
 
     // Field lines
     fields.length ? '' : undefined,
-    fields.length ? indent(fields.map(fieldSegment)) : undefined,
+    fields.length ? indent(interweave(fields.map(fieldSegment))) : undefined,
 
     // Constructors
     constructors.length
