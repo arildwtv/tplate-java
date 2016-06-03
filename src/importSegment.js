@@ -4,7 +4,7 @@ function staticImportSegment(staticImport) {
 
 export function importSegment({
   staticImport = false,
-  type
+  path
   } = {}) {
-  return ({ t }) => t(`import ${staticImportSegment(staticImport)}${type};`);
+  return ({ t }) => t(`import ${staticImportSegment(staticImport)}${path};`);
 }

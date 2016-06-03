@@ -16,8 +16,8 @@ describe('fileSegment', () => {
     const output = t(fileSegment({
       inPackage: 'com.example.mypackage',
       imports: [
-        { type: 'java.util.List' },
-        { type: 'java.util.Date' }
+        { path: 'java.util.List' },
+        { path: 'java.util.Date' }
       ],
       javaClass: {
         fields: [

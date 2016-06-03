@@ -13,10 +13,10 @@ function importSegment() {
 
   var _ref$staticImport = _ref.staticImport;
   var staticImport = _ref$staticImport === undefined ? false : _ref$staticImport;
-  var type = _ref.type;
+  var path = _ref.path;
 
   return function (_ref2) {
     var t = _ref2.t;
-    return t('import ' + staticImportSegment(staticImport) + type + ';');
+    return t('import ' + staticImportSegment(staticImport) + path + ';');
   };
 }
