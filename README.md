@@ -125,9 +125,9 @@ Note: It is important that you apply the `importCollectorMiddleware` before the 
 import { createTemplate } from 'tplate';
 import { applyMiddleware } from 'tplate-java';
 import { importCollectorMiddleware } from
-  'tplate-java/middleware/importCollectorMiddleware';
+  'tplate-java/dist/middleware/importCollectorMiddleware';
 import { typePackageRemoverMiddleware } from
-  'tplate-java/middleware/typePackageRemoverMiddleware';
+  'tplate-java/dist/middleware/typePackageRemoverMiddleware';
   
 const { t } = createTemplate();
 const { fileSegment } = applyMiddleware(
